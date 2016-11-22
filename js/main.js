@@ -267,9 +267,12 @@ function mapCode2back(number) {
 }
 
 function openNav() {
+    document.getElementById("smallNotes").style.opacity = "1";
     document.getElementById("smallNotes").style.width = "45%";
 }
 
 function closeNav() {
+    document.getElementById("smallNotes").style.opacity = "0";
     document.getElementById("smallNotes").style.width = "0";
+    
 }
