@@ -30,7 +30,7 @@ $(document).ready(function() {
             // console.log(l);
             var l = $("#" + lastTextarea).val().length;
             console.log(l);
-            
+
 
             if ((l === 0) && ($("#" + lastTextarea).is(':visible'))) {
                 console.log(1);
@@ -104,12 +104,12 @@ $(document).ready(function() {
 
             $("#ok").click(function(event) {
                 $("#overlay").fadeOut('50', function() {
-                     $("#li" + s).remove();
-                     $("#" + textarea).remove();
-                     $('#' + cb).remove();
-                     $('#' + c).remove();
-                     $('#' + HR).remove();
-                     count--;
+                    $("#li" + s).remove();
+                    $("#" + textarea).remove();
+                    $('#' + cb).remove();
+                    $('#' + c).remove();
+                    $('#' + HR).remove();
+                    count--;
 
                 });
 
@@ -156,58 +156,58 @@ $(document).ready(function() {
     $.getJSON("https://ipinfo.io", function(data) {
         console.log(data.ip);
         //var getJ = $.getJSON("https://www.geoplugin.net/json.gp?ip=" + data.ip + "&jsoncallback=?", function(pl) {
-            var city = data.city;
-            console.log(city);
+        var city = data.city;
+        console.log(city);
 
-            var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "') and u='c'"
-                //change city variable dynamically as required
-            var lastTemp = 0;
+        var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "') and u='c'"
+            //change city variable dynamically as required
+        var lastTemp = 0;
 
-            function weatherCond() {
-                $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + searchtext + "&format=json").success(function(w) {
+        function weatherCond() {
+            $.getJSON("https://query.yahooapis.com/v1/public/yql?q=" + searchtext + "&format=json").success(function(w) {
 
-                    var date = w.query.results.channel.item.condition.date;
-                    // console.log(date);
-                    var temperature = w.query.results.channel.item.condition.temp;
-                    console.log(temperature);
-                    var conditions = w.query.results.channel.item.condition.text;
-                    //console.log(conditions);
-                    var code = w.query.results.channel.item.condition.code;
-                    console.log(code);
-                    var s = $.isNumeric(code);
-                    var number = parseInt(code);
-                    //console.log(s);
-                    //console.log(number);
-                    if (lastTemp === temperature) {
-                        return;
+                var date = w.query.results.channel.item.condition.date;
+                // console.log(date);
+                var temperature = w.query.results.channel.item.condition.temp;
+                console.log(temperature);
+                var conditions = w.query.results.channel.item.condition.text;
+                //console.log(conditions);
+                var code = w.query.results.channel.item.condition.code;
+                console.log(code);
+                var s = $.isNumeric(code);
+                var number = parseInt(code);
+                //console.log(s);
+                //console.log(number);
+                if (lastTemp === temperature) {
+                    return;
 
-                    } else {
-                        lastTemp = temperature;
-
-
-                        $("#wData").css({ 'background-image': 'url(' + mapCode2back(number) + ')', 'background-repeat': 'no-repeat', 'background-position': 'center', 'background-size': 'cover' });
-                        $("#cityW").text('' + city + '');
-                        $("#temp").text('' + temperature + 'ºC');
-                        $("#image").html('<img src="http://l.yimg.com/a/i/us/we/52/' + code + '.gif" width="104" height="104" title="' + conditions + '">');
-                        $("#condW").text('' + conditions + '');
-                    }
+                } else {
+                    lastTemp = temperature;
 
 
-                    // $('#temp').html("Temperature in " + city + " is " + data.query.results.channel.item.condition.temp + "°C");
-                });
+                    $("#wData").css({ 'background-image': 'url(' + mapCode2back(number) + ')', 'background-repeat': 'no-repeat', 'background-position': 'center', 'background-size': 'cover' });
+                    $("#cityW").text('' + city + '');
+                    $("#temp").text('' + temperature + 'ºC');
+                    $("#image").html('<img src="http://l.yimg.com/a/i/us/we/52/' + code + '.gif" width="104" height="104" title="' + conditions + '">');
+                    $("#condW").text('' + conditions + '');
+                }
 
 
-            };
-            weatherCond();
-            setInterval(weatherCond, 1000000);
+                // $('#temp').html("Temperature in " + city + " is " + data.query.results.channel.item.condition.temp + "°C");
+            });
 
-        });
+
+        };
+        weatherCond();
+        setInterval(weatherCond, 1000000);
+
+
 
         // getJ.fail(function() {
         //     console.log("error");
         //     alert('Server is down. Please wait 1 minute and try again.')
         // });
-    // });
+    });
 
 
 });
@@ -265,6 +265,7 @@ function mapCode2back(number) {
     }
 
 }
+
 function openNav() {
     document.getElementById("smallNotes").style.width = "45%";
 }
