@@ -152,9 +152,9 @@ $(document).ready(function() {
     });
 
 
-    $.getJSON("http://jsonip.com/?callback=?", function(data) {
+    $.getJSON("https://jsonip.com/?callback=?", function(data) {
         console.log(data.ip);
-        var getJ = $.getJSON("http://www.geoplugin.net/json.gp?ip=" + data.ip + "&jsoncallback=?", function(pl) {
+        var getJ = $.getJSON("https://www.geoplugin.net/json.gp?ip=" + data.ip + "&jsoncallback=?", function(pl) {
             var city = pl.geoplugin_city;
             console.log(city);
 
