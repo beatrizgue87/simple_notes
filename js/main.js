@@ -152,10 +152,11 @@ $(document).ready(function() {
     });
 
 
-    $.getJSON("https://jsonip.com/?callback=?", function(data) {
+    // $.getJSON("https://jsonip.com/?callback=?", function(data) {
+    $.getJSON("https://ipinfo.io", function(data) {
         console.log(data.ip);
-        var getJ = $.getJSON("https://www.geoplugin.net/json.gp?ip=" + data.ip + "&jsoncallback=?", function(pl) {
-            var city = pl.geoplugin_city;
+        //var getJ = $.getJSON("https://www.geoplugin.net/json.gp?ip=" + data.ip + "&jsoncallback=?", function(pl) {
+            var city = data.city;
             console.log(city);
 
             var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "') and u='c'"
@@ -202,11 +203,12 @@ $(document).ready(function() {
 
         });
 
-        getJ.fail(function() {
-            console.log("error");
-            alert('Server is down. Please wait 1 minute and try again.')
-        });
-    });
+        // getJ.fail(function() {
+        //     console.log("error");
+        //     alert('Server is down. Please wait 1 minute and try again.')
+        // });
+    // });
+
 
 });
 
